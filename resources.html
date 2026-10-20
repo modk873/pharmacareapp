@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources & References - PharmaCare</title>
+  <meta name="description" content="Comprehensive list of resources, references, and data sources used in PharmaCare medical assistant application.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #1f6fff;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    h2 {
+      color: #333;
+      border-bottom: 2px solid #1f6fff;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    h3 {
+      color: #1f6fff;
+      margin: 20px 0 10px;
+      font-size: 1.2rem;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+    a {
+      color: #1f6fff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .resource-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .resource-name {
+      font-weight: 600;
+      color: #333;
+    }
+    .resource-desc {
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+    .badge {
+      display: inline-block;
+      background: #1f6fff;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      margin-right: 10px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background: #1f6fff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .back-link:hover {
+      background: #0d4ed6;
+      text-decoration: none;
+    }
+    .disclaimer {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 15px;
+      margin: 30px 0;
+      border-radius: 4px;
+    }
+    .disclaimer p {
+      margin: 0;
+      color: #856404;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Resources & References</h1>
+    <p class="subtitle">Data sources, APIs, and references used in PharmaCare</p>
+
+    <div class="disclaimer">
+      <p><strong>Disclaimer:</strong> This application is for educational purposes only. The resources listed below are for reference and should not replace professional medical advice. Always consult qualified healthcare professionals for medical decisions.</p>
+    </div>
+
+    <div class="section">
+      <h2>📊 Drug Information Sources</h2>
+      <ul>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">API</span>OpenFDA - U.S. Food and Drug Administration</span>
+          <span class="resource-desc">Official FDA database providing drug labels, adverse event reports, and drug recalls. Used for drug information and news updates.</span>
+          <a href="https://open.fda.gov/" target="_blank">https://open.fda.gov/</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Database</span>DrugBank</span>
+          <span class="resource-desc">Comprehensive drug database containing detailed chemical, pharmacological, and pharmaceutical data.</span>
+          <a href="https://go.drugbank.com/" target="_blank">https://go.drugbank.com/</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Database</span>PubChem - NCBI</span>
+          <span class="resource-desc">Open chemistry database at the National Institutes of Health providing information on chemical structures and biological activities.</span>
+          <a href="https://pubchem.ncbi.nlm.nih.gov/" target="_blank">https://pubchem.ncbi.nlm.nih.gov/</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Reference</span>DailyMed - NIH</span>
+          <span class="resource-desc">Official provider of FDA label information (package inserts). Provides high-quality drug information.</span>
+          <a href="https://dailymed.nlm.nih.gov/" target="_blank">https://dailymed.nlm.nih.gov/</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🧪 Medical Calculators & Formulas</h2>
+      <ul>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Formula</span>Cockcroft-Gault Equation</span>
+          <span class="resource-desc">Used for estimating creatinine clearance (CrCl) for medication dosing adjustments in renal impairment.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Formula</span>Body Mass Index (BMI)</span>
+          <span class="resource-desc">Standard formula: BMI = weight (kg) / height² (m²). Used for weight classification.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Formula</span>Pediatric Dosage Calculation</span>
+          <span class="resource-desc">Weight-based dosing: Dose = Weight (kg) × Dose (mg/kg). Commonly used for pediatric medications.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Formula</span>IV Drip Rate Calculation</span>
+          <span class="resource-desc">Formula: Drip Rate (gtt/min) = (Volume × Drop Factor) / Time (min). Used for intravenous medication administration.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Reference</span>MDCalc</span>
+          <span class="resource-desc">Comprehensive medical calculator reference for clinical decision support.</span>
+          <a href="https://www.mdcalc.com/" target="_blank">https://www.mdcalc.com/</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🏥 Clinical Guidelines & References</h2>
+      <ul>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Guideline</span>WHO Guidelines</span>
+          <span class="resource-desc">World Health Organization guidelines for medications, treatments, and public health recommendations.</span>
+          <a href="https://www.who.int/guidelines" target="_blank">https://www.who.int/guidelines</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Guideline</span>CDC Clinical Guidelines</span>
+          <span class="resource-desc">Centers for Disease Control and Prevention clinical guidelines for various conditions and treatments.</span>
+          <a href="https://www.cdc.gov/clinicalguidelines" target="_blank">https://www.cdc.gov/clinicalguidelines</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Reference</span>Merck Manual Professional</span>
+          <span class="resource-desc">Trusted medical reference providing information on diseases, symptoms, diagnosis, and treatment.</span>
+          <a href="https://www.merckmanuals.com/professional" target="_blank">https://www.merckmanuals.com/professional</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Reference</span>MedlinePlus - NIH</span>
+          <span class="resource-desc">Consumer health information providing reliable information on diseases, conditions, and wellness.</span>
+          <a href="https://medlineplus.gov/" target="_blank">https://medlineplus.gov/</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🆘 Emergency & First Aid References</h2>
+      <ul>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Reference</span>Red Cross First Aid</span>
+          <span class="resource-desc">American Red Cross first aid guidelines and emergency procedures.</span>
+          <a href="https://www.redcross.org/training/emergency-preparedness/first-aid" target="_blank">https://www.redcross.org/training/emergency-preparedness/first-aid</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Reference</span>Mayo Clinic First Aid</span>
+          <span class="resource-desc">Comprehensive first aid and emergency care information from Mayo Clinic.</span>
+          <a href="https://www.mayoclinic.org/first-aid" target="_blank">https://www.mayoclinic.org/first-aid</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Reference</span>Emergency Numbers</span>
+          <span class="resource-desc">911 (USA/Canada), 999 (UK), 112 (EU), 108 (India). Always call local emergency services for medical emergencies.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>💊 Drug Interaction Resources</h2>
+      <ul>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Database</span>Drug Interaction Checker - Medscape</span>
+          <span class="resource-desc">Comprehensive drug interaction database for checking potential interactions between medications.</span>
+          <a href="https://reference.medscape.com/drug-interactionchecker" target="_blank">https://reference.medscape.com/drug-interactionchecker</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Database</span>Drugs.com Interaction Checker</span>
+          <span class="resource-desc">Drug interaction checker providing detailed information on potential drug-drug interactions.</span>
+          <a href="https://www.drugs.com/drug_interactions.html" target="_blank">https://www.drugs.com/drug_interactions.html</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🌿 Herbal & Alternative Medicine</h2>
+      <ul>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Database</span>National Center for Complementary and Integrative Health (NCCIH)</span>
+          <span class="resource-desc">NIH resource for research and information on complementary and integrative health approaches.</span>
+          <a href="https://www.nccih.nih.gov/" target="_blank">https://www.nccih.nih.gov/</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Database</span>Herbal Medicine Database</span>
+          <span class="resource-desc">Information on herbal medicines, their uses, interactions, and safety profiles.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>📍 Location Services</h2>
+      <ul>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">API</span>Google Maps API</span>
+          <span class="resource-desc">Used for pharmacy and hospital locator functionality (requires API key for production use).</span>
+          <a href="https://developers.google.com/maps" target="_blank">https://developers.google.com/maps</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">API</span>OpenStreetMap</span>
+          <span class="resource-desc">Open-source map data alternative for location services.</span>
+          <a href="https://www.openstreetmap.org/" target="_blank">https://www.openstreetmap.org/</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🔒 Privacy & Security</h2>
+      <ul>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Standard</span>HIPAA Compliance</span>
+          <span class="resource-desc">Health Insurance Portability and Accountability Act standards for protecting health information.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Standard</span>GDPR Compliance</span>
+          <span class="resource-desc">General Data Protection Regulation for EU users' data protection and privacy.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Note</span>Local Storage</span>
+          <span class="resource-desc">This application uses browser localStorage for data persistence. Data is stored locally on the user's device and is not transmitted to external servers.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>📚 Educational Resources</h2>
+      <ul>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Course</span>Pharmacology Basics</span>
+          <span class="resource-desc">Understanding how drugs work in the body, including pharmacokinetics and pharmacodynamics.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Guide</span>Medication Safety</span>
+          <span class="resource-desc">Best practices for medication safety, including proper storage, administration, and disposal.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Guide</span>Understanding Drug Labels</span>
+          <span class="resource-desc">How to read and understand prescription and over-the-counter drug labels.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🛠️ Technical Resources</h2>
+      <ul>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Library</span>HTML5 & CSS3</span>
+          <span class="resource-desc">Modern web standards for responsive and accessible user interfaces.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Library</span>Vanilla JavaScript (ES6+)</span>
+          <span class="resource-desc">Client-side scripting for application logic and interactivity.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">API</span>Geolocation API</span>
+          <span class="resource-desc">Browser API for obtaining user location for pharmacy/hospital locator.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">API</span>Web Storage API</span>
+          <span class="resource-desc">localStorage and sessionStorage for client-side data persistence.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>📖 Additional Reading</h2>
+      <ul>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Book</span>Goodman & Gilman's The Pharmacological Basis of Therapeutics</span>
+          <span class="resource-desc">Comprehensive pharmacology textbook covering drug mechanisms and clinical applications.</span>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Journal</span>The Lancet</span>
+          <span class="resource-desc">Leading medical journal publishing peer-reviewed research in medicine and health.</span>
+          <a href="https://www.thelancet.com/" target="_blank">https://www.thelancet.com/</a>
+        </li>
+        <li class="resource-item">
+          <span class="resource-name"><span class="badge">Journal</span>New England Journal of Medicine (NEJM)</span>
+          <span class="resource-desc">Premier medical journal publishing groundbreaking research and reviews.</span>
+          <a href="https://www.nejm.org/" target="_blank">https://www.nejm.org/</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="disclaimer">
+      <p><strong>Important Notice:</strong> This application is designed for educational purposes only and should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read in this application or any linked resources.</p>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to PharmaCare</a>
+  </div>
+</body>
+</html>

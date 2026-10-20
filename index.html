@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#117c79">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="PharmaCare university demonstration: medicine information, calculators, symptom education, and medicine identification tools.">
+<meta name="keywords" content="medical assistant, drug information, dosage calculator, drug interaction, pill identifier, medication reminder, pharmacy locator, medical calculators">
+<meta name="author" content="PharmaCare">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph Tags for Social Media -->
+<meta property="og:title" content="PharmaCare - Your Trusted Medical Assistant">
+<meta property="og:description" content="Medicine information and practical health tools for an educational demonstration.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pharmacare.app">
+<meta property="og:image" content="https://pharmacare.app/og-image.png">
+<meta property="og:site_name" content="PharmaCare">
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PharmaCare - Your Trusted Medical Assistant">
+<meta name="twitter:description" content="Medicine information and practical health tools for an educational demonstration.">
+<meta name="twitter:image" content="https://pharmacare.app/twitter-image.png">
+
+<title>PharmaCare - Medicine Information &amp; Health Tools</title>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23117c79'/%3E%3Crect x='45' y='25' width='10' height='50' fill='white'/%3E%3Crect x='25' y='45' width='50' height='10' fill='white'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="refresh.css">
+
+</head>
+
+<body>
+
+<!-- Loading Screen -->
+<div id="loadingScreen" class="loading-screen">
+  <div class="loading-content">
+    <div class="loading-logo">
+      <svg class="logo-svg" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="45" fill="#117c79"/>
+        <rect x="45" y="25" width="10" height="50" fill="white"/>
+        <rect x="25" y="45" width="50" height="10" fill="white"/>
+      </svg>
+    </div>
+    <div class="loading-spinner"></div>
+    <p class="loading-text" data-i18n="loading_text">Loading PharmaCare...</p>
+  </div>
+</div>
+
+<div class="header">
+
+<div class="header-brand" onclick="openPage('dashboardPage')">
+
+<div class="logo">
+
+<svg class="logo-svg" viewBox="0 0 100 100" aria-hidden="true">
+
+<circle cx="50" cy="50" r="45" fill="#117c79"/>
+
+<rect x="45" y="25" width="10" height="50" fill="white"/>
+<rect x="25" y="45" width="50" height="10" fill="white"/>
+
+</svg>
+
+</div>
+
+<div class="title">
+PharmaCare
+</div>
+
+</div>
+
+<div class="header-actions">
+<button type="button" id="installAppButton" class="install-app-btn header-install-btn" onclick="installPharmaCare()" aria-label="Install PharmaCare"><span aria-hidden="true">⬇</span> <span data-i18n="pwa_install">Install PharmaCare</span></button>
+<details class="language-menu">
+  <summary aria-label="Choose language">🌐 <span id="languageCurrent">EN</span></summary>
+  <div class="language-options" role="group" aria-label="Language">
+    <button type="button" class="lang-btn" onclick="setLanguage('en');document.querySelector('.language-menu').open=false">English</button>
+    <button type="button" class="lang-btn" onclick="setLanguage('ta');document.querySelector('.language-menu').open=false">தமிழ்</button>
+    <button type="button" class="lang-btn" onclick="setLanguage('ar');document.querySelector('.language-menu').open=false">العربية</button>
+  </div>
+</details>
+<button type="button" id="themeToggle" class="theme-toggle" onclick="event.stopPropagation(); toggleTheme()">🌓</button>
+</div>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div id="dashboardPage" class="container page active">
+
+<h3 data-i18n="dashboard_title">Dashboard</h3>
+<section class="dashboard-welcome">
+  <div class="welcome-mark" aria-hidden="true">✚</div>
+  <div><p class="eyebrow">PHARMACARE · INDIA</p><h2 data-i18n="welcome_title">Care tools, clearly organised</h2><p data-i18n="welcome_desc">Browse medicine information and practical health tools for education.</p></div>
+</section>
+<div class="demo-banner"><strong data-i18n="demo_title">University demonstration</strong><span data-i18n="demo_note">Use sample data only. This app does not diagnose or replace a healthcare professional.</span></div>
+
+<div class="grid">
+
+<div class="card" onclick="openPage('medicalCalcPage')">
+<span data-i18n="card_medical_calculators">Medical Calculators</span>
+</div>
+
+<div class="card" onclick="openPage('interactionPage')">
+<span data-i18n="card_drug_interaction">Drug Interaction</span>
+</div>
+
+<div class="card card--library" onclick="openPage('libraryPage')">
+<span data-i18n="card_medicine_library">Medicine Library</span>
+</div>
+
+<div class="card" onclick="openPage('reminderPage')">
+<span data-i18n="card_medication_reminder">Medication Reminder</span>
+</div>
+
+<div class="card" onclick="openPage('emergencyGuidePage')">
+<span data-i18n="card_first_aid">Emergency &amp; First Aid</span>
+</div>
+
+<div class="card" onclick="openPage('diseaseGuidePage')">
+<span data-i18n="card_disease_guide">Disease Guide</span>
+</div>
+
+<div class="card" onclick="openPage('guidelinesPage')">
+<span data-i18n="card_clinical_guidelines">Clinical Guidelines</span>
+</div>
+
+<div class="card" onclick="openPage('alternativesPage')">
+<span data-i18n="card_alternatives">Alternative Drugs</span>
+</div>
+
+<div class="card" onclick="openPage('notesPage')">
+<span data-i18n="card_medical_notes">Medical Notes</span>
+</div>
+
+<div class="card" onclick="openPage('healthTrackerPage')">
+<span data-i18n="card_health_tracker">Health Tracker</span>
+</div>
+
+<div class="card" onclick="openPage('vaccinationPage')">
+<span data-i18n="card_vaccination">Vaccination Records</span>
+</div>
+
+<div class="card" onclick="openPage('labResultsPage')">
+<span data-i18n="card_lab_results">Lab Results</span>
+</div>
+
+<div class="card" onclick="openPage('allergiesPage')">
+<span data-i18n="card_allergies">Allergy Checker</span>
+</div>
+
+<div class="card" onclick="openPage('symptomCheckerPage')">
+<span data-i18n="card_symptom_checker">Symptom Checker</span>
+</div>
+
+<div class="card" onclick="openPage('medicineToolsPage')"><span data-i18n="identify">🔎 Identify a Medicine</span></div>
+
+<div class="card" onclick="openPage('drugComparisonPage')">
+<span data-i18n="card_drug_comparison">Drug Comparison</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- MEDICAL CALCULATORS LIST -->
+
+<div id="medicalCalcPage" class="container page">
+
+<h3 data-i18n="medical_calc_title">Medical Calculators</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p class="source-note">Educational calculations only. Formula labels are shown in each tool; drug-specific dosing and clinical decisions must be checked against current official product information and a qualified clinician. Page reviewed 20 Oct 2026.</p>
+
+<div class="grid">
+
+<div class="card" onclick="openPage('dosePage')">
+<span data-i18n="calc_dose_by_weight">Dose by Weight Calculator</span>
+</div>
+
+<div class="card" onclick="openPage('pediatricDosePage')">
+<span data-i18n="calc_pediatric_dose">Pediatric Dose Calculator</span>
+</div>
+
+<div class="card" onclick="openPage('ivDripRatePage')">
+<span data-i18n="calc_iv_drip">IV Drip Rate Calculator</span>
+</div>
+
+<div class="card" onclick="openPage('bmiPage')">
+BMI Calculator
+</div>
+
+<div class="card" onclick="openPage('crclPage')">
+<span data-i18n="calc_crcl">Creatinine Clearance (Cockcroft-Gault)</span>
+</div>
+
+<div class="card" onclick="openPage('bsaPage')">
+<span data-i18n="calc_bsa">Body Surface Area (BSA)</span>
+</div>
+
+<div class="card" onclick="openPage('infusionRatePage')">
+<span data-i18n="calc_infusion_rate">Infusion Rate Calculator</span>
+</div>
+
+<div class="card" onclick="openPage('paracetamolDosePage')">
+<span data-i18n="calc_paracetamol_safe">Paracetamol Safe Dose</span>
+</div>
+
+<div class="card" onclick="openPage('convertPage');fillConvertUnits()"><span>↔ Unit Converter</span></div>
+
+</div>
+
+</div>
+
+<!-- CALCULATOR DETAIL PAGES (PLACEHOLDERS) -->
+
+<div id="pediatricDosePage" class="container page">
+
+<h3 data-i18n="pediatric_title">Pediatric Dose Calculator</h3>
+<button class="back-btn" onclick="goBack('medicalCalcPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="pediatric_desc">Calculate a pediatric dose using weight and mg/kg.</p>
+
+<input id="pedWeight" data-i18n-placeholder="ped_weight_ph" placeholder="Weight (kg)">
+<input id="pedMgKg" data-i18n-placeholder="ped_mgkg_ph" placeholder="Dose (mg/kg per dose)">
+<input id="pedMaxDose" data-i18n-placeholder="ped_max_ph" placeholder="Optional max single dose (mg)">
+<button onclick="calculatePediatricDose()" data-i18n="ped_calc_btn">Calculate</button>
+<div id="pedResult" class="result"></div>
+
+</div>
+
+<div id="ivDripRatePage" class="container page">
+
+<h3 data-i18n="ivdrip_title">IV Drip Rate Calculator</h3>
+<button class="back-btn" onclick="goBack('medicalCalcPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="iv_desc">Calculate drip rate (gtt/min) and pump rate (mL/hr).</p>
+
+<input id="ivVolume" data-i18n-placeholder="iv_volume_ph" placeholder="Total volume (mL)">
+<input id="ivTimeMin" data-i18n-placeholder="iv_time_ph" placeholder="Time (minutes)">
+<input id="ivDropFactor" data-i18n-placeholder="iv_drop_ph" placeholder="Drop factor (gtt/mL), e.g. 15 or 20 or 60">
+<button onclick="calculateIVDrip()" data-i18n="iv_calc_btn">Calculate</button>
+<div id="ivResult" class="result"></div>
+
+</div>
+
+<div id="crclPage" class="container page">
+
+<h3 data-i18n="crcl_title">Creatinine Clearance (Cockcroft-Gault)</h3>
+<button class="back-btn" onclick="goBack('medicalCalcPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="crcl_desc">Estimate creatinine clearance (mL/min) using Cockcroft–Gault.</p>
+
+<input id="crclAge" data-i18n-placeholder="crcl_age_ph" placeholder="Age (years)">
+<input id="crclWeight" data-i18n-placeholder="crcl_weight_ph" placeholder="Weight (kg)">
+<input id="crclScr" data-i18n-placeholder="crcl_scr_ph" placeholder="Serum creatinine (mg/dL)">
+<select id="crclSex" class="form-select">
+  <option value="male" data-i18n="sex_male">Male</option>
+  <option value="female" data-i18n="sex_female">Female</option>
+</select>
+<button onclick="calculateCrCl()" data-i18n="crcl_calc_btn">Calculate</button>
+<div id="crclResult" class="result"></div>
+
+</div>
+
+<div id="bsaPage" class="container page">
+
+<h3 data-i18n="bsa_title">Body Surface Area (BSA)</h3>
+<button class="back-btn" onclick="goBack('medicalCalcPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="bsa_desc">Calculate BSA using the Mosteller formula.</p>
+
+<input id="bsaHeight" data-i18n-placeholder="bsa_height_ph" placeholder="Height (cm)">
+<input id="bsaWeight" data-i18n-placeholder="bsa_weight_ph" placeholder="Weight (kg)">
+<button onclick="calculateBSA()" data-i18n="bsa_calc_btn">Calculate</button>
+<div id="bsaResult" class="result"></div>
+
+</div>
+
+<div id="infusionRatePage" class="container page">
+
+<h3 data-i18n="infusion_title">Infusion Rate Calculator</h3>
+<button class="back-btn" onclick="goBack('medicalCalcPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="inf_desc">Calculate infusion pump rate (mL/hr) from dose and concentration.</p>
+
+<input id="infDose" data-i18n-placeholder="inf_dose_ph" placeholder="Dose rate (mg/hr)">
+<input id="infConc" data-i18n-placeholder="inf_conc_ph" placeholder="Concentration (mg/mL)">
+<button onclick="calculateInfusionRate()" data-i18n="inf_calc_btn">Calculate</button>
+<div id="infResult" class="result"></div>
+
+</div>
+
+<div id="paracetamolDosePage" class="container page">
+
+<h3 data-i18n="para_safe_title">Paracetamol Safe Dose</h3>
+<button class="back-btn" onclick="goBack('medicalCalcPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="para_desc">Estimate maximum safe dosing guidance (educational only).</p>
+
+<input id="paraWeight" data-i18n-placeholder="para_weight_ph" placeholder="Weight (kg)">
+<select id="paraGroup" class="form-select">
+  <option value="child" data-i18n="para_child">Child</option>
+  <option value="adult" data-i18n="para_adult">Adult</option>
+</select>
+<button onclick="calculateParacetamolSafe()" data-i18n="para_calc_btn">Calculate</button>
+<div id="paraResult" class="result"></div>
+
+</div>
+
+<!-- DOSE CALCULATOR -->
+
+<div id="dosePage" class="container page">
+
+<h3 data-i18n="dose_title">Dose Calculator</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+
+<input id="drug" data-i18n-placeholder="dose_drug_ph" placeholder="Drug Name">
+
+<input id="weight" data-i18n-placeholder="dose_weight_ph" placeholder="Weight kg">
+
+<button onclick="calculateDose()" data-i18n="dose_calc_btn">Calculate</button>
+
+<div id="doseResult" class="result"></div>
+
+<h4 class="section-heading" data-i18n="side_effect_title">Side Effect Checker</h4>
+<p data-i18n="side_effect_desc">Type a symptom (e.g., cough, bleeding, nausea) and the app suggests possible drug-related causes (educational only).</p>
+<input id="symptomInput" data-i18n-placeholder="side_effect_ph" placeholder="Symptom (e.g. cough, bleeding)">
+<button onclick="checkSideEffect()" data-i18n="side_effect_btn">Check Side Effect</button>
+<div id="sideEffectResult" class="result"></div>
+
+</div>
+
+<!-- BMI -->
+
+<div id="bmiPage" class="container page">
+
+<h3 data-i18n="bmi_title">BMI Calculator</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+
+<input id="height" data-i18n-placeholder="bmi_height_ph" placeholder="Height cm">
+
+<input id="bmiweight" data-i18n-placeholder="bmi_weight_ph" placeholder="Weight kg">
+
+<button onclick="calculateBMI()" data-i18n="bmi_calc_btn">Calculate BMI</button>
+
+<div id="bmiResult" class="result"></div>
+
+</div>
+
+<!-- DRUG INTERACTION -->
+
+<div id="interactionPage" class="container page">
+
+<h3 data-i18n="interaction_title">Drug Interaction</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p class="source-note">Interaction results use the local demonstration rules and are not comprehensive. Verify every medicine against its current prescribing information: <a href="https://cdsco.gov.in/opencms/opencms/en/Notifications/Prescribing-Information/" target="_blank" rel="noopener">CDSCO prescribing information</a>. Page reviewed 20 Oct 2026.</p>
+
+<input id="interactionDrug1" data-i18n-placeholder="interaction_drug1_ph" placeholder="Drug 1">
+<input id="interactionDrug2" data-i18n-placeholder="interaction_drug2_ph" placeholder="Drug 2">
+
+<button onclick="checkInteraction()" data-i18n="interaction_btn">Check Interaction</button>
+<div id="interactionResult" class="result"></div>
+
+</div>
+
+<!-- DRUG & HERB LIBRARY -->
+
+<div id="libraryPage" class="container page">
+
+<h3 data-i18n="library_title">Medicine Library</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="library_desc">Browse 200+ medicines by illness category, search any drug, or explore the herbal section.</p>
+
+<div class="library-search-bar">
+<input id="drugSearchInput" list="drugSearchSuggestions" data-i18n-placeholder="library_search_ph" placeholder="Search medicine, brand, ingredient or strength...">
+<datalist id="drugSearchSuggestions"></datalist>
+<button type="button" onclick="searchDrug()" data-i18n="library_search_btn">Search</button>
+</div>
+<p class="source-note">Medicine records are educational summaries. Missing fields are marked “Not available”. Verify current product information with a pharmacist or official source.</p>
+<div id="drugInfoResult" class="result library-search-result"></div>
+
+<div class="library-stats" id="libraryStats"></div>
+
+<div class="library-category-nav" id="libraryCategoryNav"></div>
+
+<div id="libraryCategoryContent" class="library-category-content"></div>
+
+<h4 class="section-heading section-heading--loose" data-i18n="library_herbs_title">🌿 Herbal & Natural Remedies</h4>
+<div id="libraryHerbsContent" class="library-herbs-grid"></div>
+
+</div>
+
+<!-- PILL IDENTIFIER -->
+
+<!-- DISEASE GUIDE -->
+
+<div id="diseaseGuidePage" class="container page">
+
+<h3 data-i18n="disease_title">Disease Guide</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="disease_desc">A brief guide to common diseases. Educational only and not a substitute for medical advice.</p>
+
+<div class="result" id="diseaseContent"></div>
+<div class="source-note"><strong>References:</strong> <a href="https://www.who.int/news-room/fact-sheets/detail/diabetes" target="_blank" rel="noopener">WHO: Diabetes</a> · <a href="https://www.who.int/news-room/fact-sheets/detail/hypertension" target="_blank" rel="noopener">WHO: Hypertension</a> · <a href="https://ginasthma.org/wp-content/uploads/2026/05/GINA-2026-Strategy-Report-WMS.pdf" target="_blank" rel="noopener">GINA 2026 asthma strategy</a>. Educational summaries; checked 20 Oct 2026.</div>
+
+</div>
+
+<!-- CLINICAL GUIDELINES -->
+
+<div id="guidelinesPage" class="container page">
+
+<h3 data-i18n="guidelines_title">Clinical Guidelines</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="guidelines_desc">Simplified summaries for education only. Always refer to up-to-date official guidelines.</p>
+
+<div class="result" id="guidelinesContent"></div>
+<div class="source-note"><strong>References:</strong> <a href="https://www.who.int/news-room/fact-sheets/detail/hypertension" target="_blank" rel="noopener">WHO hypertension overview</a> · <a href="https://ginasthma.org/wp-content/uploads/2026/05/GINA-2026-Strategy-Report-WMS.pdf" target="_blank" rel="noopener">GINA 2026 strategy report</a> · <a href="https://www.who.int/news-room/fact-sheets/detail/diabetes" target="_blank" rel="noopener">WHO diabetes overview</a>. Educational summary; checked 20 Oct 2026.</div>
+
+</div>
+
+<!-- DRUG AVAILABILITY CHECKER -->
+
+<!-- ALTERNATIVE DRUGS -->
+
+<div id="alternativesPage" class="container page">
+
+<h3 data-i18n="alternatives_title">Alternative Drugs</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="alternatives_desc">Type a drug name (e.g., Augmentin) to see possible alternatives (educational only; prescriber decides).</p>
+
+<input id="alternativeInput" data-i18n-placeholder="alternatives_ph" placeholder="Example: Augmentin">
+<button onclick="findAlternatives()" data-i18n="alternatives_btn">Find Alternatives</button>
+<div id="alternativeResult" class="result"></div>
+
+</div>
+
+<!-- MEDICAL NOTES -->
+
+<div id="notesPage" class="container page">
+
+<h3 data-i18n="notes_title">Medical Notes</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="notes_desc">A place to save pharmacist notes or patient info (stored locally on this device only).</p>
+
+<textarea id="notesArea" class="notes-textarea" rows="8" placeholder=""></textarea>
+<button onclick="saveNotes()" data-i18n="notes_btn">Save Notes</button>
+<div id="notesStatus" class="result"></div>
+
+</div>
+
+<!-- HEALTH TRACKER -->
+
+<div id="healthTrackerPage" class="container page">
+
+<h3 data-i18n="health_tracker_title">Health Tracker</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="health_tracker_desc">Track your daily health metrics including blood pressure, heart rate, weight, and more.</p>
+
+<div class="health-metrics">
+  <div class="metric-card">
+    <h4 data-i18n="metric_bp">Blood Pressure</h4>
+    <input id="bpSystolic" placeholder="Systolic (mmHg)">
+    <input id="bpDiastolic" placeholder="Diastolic (mmHg)">
+    <button onclick="saveHealthMetric('bp')" data-i18n="metric_save">Save</button>
+  </div>
+  <div class="metric-card">
+    <h4 data-i18n="metric_heart_rate">Heart Rate</h4>
+    <input id="heartRate" placeholder="BPM">
+    <button onclick="saveHealthMetric('heart')" data-i18n="metric_save">Save</button>
+  </div>
+  <div class="metric-card">
+    <h4 data-i18n="metric_weight">Weight</h4>
+    <input id="healthWeight" placeholder="kg">
+    <button onclick="saveHealthMetric('weight')" data-i18n="metric_save">Save</button>
+  </div>
+  <div class="metric-card">
+    <h4 data-i18n="metric_glucose">Blood Glucose</h4>
+    <input id="glucose" placeholder="mg/dL">
+    <button onclick="saveHealthMetric('glucose')" data-i18n="metric_save">Save</button>
+  </div>
+</div>
+
+<div id="healthHistory" class="result"></div>
+
+</div>
+
+<!-- VACCINATION RECORDS -->
+
+<div id="vaccinationPage" class="container page">
+
+<h3 data-i18n="vaccination_title">Vaccination Records</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="vaccination_desc">Keep track of your vaccinations and upcoming booster doses.</p>
+
+<div class="vaccination-form">
+  <input id="vaccineName" data-i18n-placeholder="vaccine_name_ph" placeholder="Vaccine Name">
+  <input id="vaccineDate" type="date" data-i18n-placeholder="vaccine_date_ph" placeholder="Date">
+  <input id="vaccineNext" type="date" data-i18n-placeholder="vaccine_next_ph" placeholder="Next Dose Date">
+  <button onclick="addVaccination()" data-i18n="vaccine_add">Add Record</button>
+</div>
+
+<div id="vaccinationList" class="result"></div>
+
+</div>
+
+<!-- LAB RESULTS -->
+
+<div id="labResultsPage" class="container page">
+
+<h3 data-i18n="lab_results_title">Lab Results</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="lab_results_desc">Store and track your laboratory test results for easy reference.</p>
+
+<div class="lab-form">
+  <input id="labTestName" data-i18n-placeholder="lab_test_ph" placeholder="Test Name">
+  <input id="labTestDate" type="date" data-i18n-placeholder="lab_date_ph" placeholder="Test Date">
+  <input id="labTestValue" data-i18n-placeholder="lab_value_ph" placeholder="Result Value">
+  <input id="labTestRange" data-i18n-placeholder="lab_range_ph" placeholder="Normal Range">
+  <button onclick="addLabResult()" data-i18n="lab_add">Add Result</button>
+</div>
+
+<div id="labResultsList" class="result"></div>
+
+</div>
+
+<!-- ALLERGY CHECKER -->
+
+<div id="allergiesPage" class="container page">
+
+<h3 data-i18n="allergy_title">Allergy Checker</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="allergy_desc">Check for potential allergens in medications and foods.</p>
+
+<div class="allergy-check">
+  <input id="allergyInput" data-i18n-placeholder="allergy_input_ph" placeholder="Enter medication or food">
+  <button onclick="checkAllergy()" data-i18n="allergy_check">Check for Allergens</button>
+</div>
+
+<div id="allergyResult" class="result"></div>
+
+<h4 class="section-heading" data-i18n="my_allergies_title">My Allergies</h4>
+<div class="allergy-form">
+  <input id="myAllergy" data-i18n-placeholder="my_allergy_ph" placeholder="Add your allergy">
+  <button onclick="addMyAllergy()" data-i18n="allergy_add">Add</button>
+</div>
+<div id="myAllergiesList" class="result"></div>
+
+</div>
+
+<!-- SYMPTOM CHECKER -->
+
+<div id="symptomCheckerPage" class="container page">
+
+<h3 data-i18n="symptom_title">Symptom Checker</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="symptom_desc">Experimental education tool. It does not diagnose conditions or recommend medicines. Use emergency care for urgent symptoms.</p>
+
+<div class="symptom-tabs" role="tablist" aria-label="Symptom tools">
+  <button type="button" role="tab" onclick="showSymptomTab('guide')" data-i18n="symptom_tab_guide">Guide</button>
+  <button type="button" role="tab" onclick="showSymptomTab('check')" data-i18n="symptom_tab_check">Questionnaire</button>
+  <button type="button" role="tab" onclick="showSymptomTab('diary')" data-i18n="symptom_tab_diary">Symptom diary</button>
+</div>
+<section id="symptomGuideTab" class="symptom-tab-panel"><h4 data-i18n="symptom_urgent_title">When to seek urgent help</h4><p data-i18n="symptom_urgent">Call 112 for severe breathing difficulty, chest pain, signs of stroke, fainting, severe bleeding, or a rapidly worsening condition. For other concerns, contact a qualified clinician.</p><p data-i18n="symptom_limit">This guide offers general education only and cannot assess an individual.</p><p class="source-note">Reference: <a href="https://112.gov.in/" target="_blank" rel="noopener">India ERSS emergency number 112</a>. Reviewed 20 Oct 2026.</p></section>
+
+<div id="symptomCheckTab" class="symptom-tab-panel symptom-check">
+  <textarea id="symptomDescription" rows="4" data-i18n-placeholder="symptom_desc_ph" placeholder="Describe your symptoms..."></textarea>
+  <label class="check-row"><input id="symptomEmergencyFlag" type="checkbox"><span data-i18n="symptom_severe">Are symptoms severe or rapidly worsening?</span></label>
+  <label for="symptomDuration" data-i18n="symptom_duration">How long have they lasted?</label><select id="symptomDuration"><option>Today</option><option>1–3 days</option><option>More than 3 days</option></select>
+  <button onclick="checkSymptoms()" data-i18n="symptom_review">Review educational guidance</button>
+</div>
+
+<div id="symptomResult" class="result"></div>
+<section id="symptomDiaryTab" class="symptom-tab-panel"><h4 data-i18n="symptom_diary_title">Demo symptom diary</h4><textarea id="symptomDiaryInput" rows="3" placeholder="Record a symptom and when it started"></textarea><button type="button" onclick="saveSymptomDiary()" data-i18n="symptom_save">Save entry on this device</button><button type="button" class="secondary-action" onclick="clearSymptomDiary()" data-i18n="symptom_clear">Clear diary</button><div id="symptomDiaryList" class="result"></div><p class="source-note" data-i18n="symptom_privacy">Do not enter identifying or sensitive health information. Entries stay in this browser.</p></section>
+
+</div>
+
+<!-- EMERGENCY GUIDE -->
+
+<div id="emergencyGuidePage" class="container page">
+
+<h3 data-i18n="emergency_title">Emergency &amp; First Aid</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="emergency_desc">Quick reference for emergency situations and first aid procedures.</p>
+<div class="emergency-call"><strong>Emergency help in India</strong><p>If someone may be in immediate danger, call the pan-India emergency number.</p><a class="call-112" href="tel:112">Call 112</a><small>Source: Government of India ERSS · <a href="https://112.gov.in/" target="_blank" rel="noopener">112 India</a></small></div>
+
+<div class="emergency-cards">
+  <div class="emergency-card emergency-card--critical">
+    <h4 data-i18n="emergency_heart">🚨 Heart Attack</h4>
+    <p data-i18n="emergency_heart_desc">Chest pain, shortness of breath, nausea. Call emergency immediately.</p>
+  </div>
+  <div class="emergency-card emergency-card--critical">
+    <h4 data-i18n="emergency_stroke">🚨 Stroke</h4>
+    <p data-i18n="emergency_stroke_desc">Face drooping, arm weakness, speech difficulty. Act FAST.</p>
+  </div>
+  <div class="emergency-card emergency-card--urgent">
+    <h4 data-i18n="emergency_breathing">⚠️ Breathing Difficulty</h4>
+    <p data-i18n="emergency_breathing_desc">Sit upright, use inhaler if available, call emergency if severe.</p>
+  </div>
+  <div class="emergency-card emergency-card--urgent">
+    <h4 data-i18n="emergency_bleeding">⚠️ Severe Bleeding</h4>
+    <p data-i18n="emergency_bleeding_desc">Apply direct pressure, elevate if possible, call emergency.</p>
+  </div>
+  <div class="emergency-card emergency-card--info">
+    <h4 data-i18n="emergency_burns">ℹ️ Burns</h4>
+    <p data-i18n="emergency_burns_desc">Cool with running water, cover with sterile dressing, seek medical help.</p>
+  </div>
+  <div class="emergency-card emergency-card--info">
+    <h4 data-i18n="emergency_poison">ℹ️ Poisoning</h4>
+    <p data-i18n="emergency_poison_desc">Call poison control, do not induce vomiting unless instructed.</p>
+  </div>
+</div>
+<p class="source-note"><strong>References:</strong> <a href="https://112.gov.in/" target="_blank" rel="noopener">India ERSS emergency number 112</a> · <a href="https://www.who.int/news-room/fact-sheets/detail/burns" target="_blank" rel="noopener">WHO first aid for burns</a> · <a href="https://www.nhm.gov.in/images/pdf/guidelines/iphs/iphs-revised-guidlines-2022/04-SHC_HWC_UHWC_IPHS_Guidelines-2022.pdf" target="_blank" rel="noopener">National Health Mission emergency care guidance</a>. Checked 20 Oct 2026.</p>
+<section id="firstAidBasics" class="first-aid-basics" aria-label="First aid information"></section>
+
+</div>
+
+<!-- DRUG COMPARISON -->
+
+<div id="drugComparisonPage" class="container page">
+
+<h3 data-i18n="drug_comparison_title">Drug Comparison</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="drug_comparison_desc">Compare two drugs side by side to understand differences and similarities.</p>
+
+<div class="drug-compare">
+  <input id="compareDrug1" data-i18n-placeholder="compare_drug1_ph" placeholder="First Drug">
+  <input id="compareDrug2" data-i18n-placeholder="compare_drug2_ph" placeholder="Second Drug">
+  <button onclick="compareDrugs()" data-i18n="compare_btn">Compare Drugs</button>
+</div>
+
+<div id="comparisonResult" class="result"></div>
+
+</div>
+
+<!-- MEDICINE IDENTIFICATION: real barcode decoding + exact catalogue matching -->
+<div id="medicineToolsPage" class="container page">
+  <h3>Identify a Medicine</h3>
+  <button class="back-btn" onclick="goBack('dashboardPage')">← Dashboard</button>
+  <p>Scan a medicine pack barcode, or enter it manually. A scan reads the code; a trusted catalogue match is needed to identify the product.</p>
+  <div class="identifier-grid">
+    <section class="identifier-card">
+      <div class="section-icon">▦</div><h4>Scan a pack</h4>
+      <video id="barcodeVideo" playsinline muted aria-label="Live camera view for barcode scanning"></video>
+      <div class="identifier-actions"><button type="button" onclick="startBarcodeScanner()">Open camera and scan</button><button type="button" class="secondary-action" onclick="stopBarcodeScanner()">Stop camera</button></div>
+      <label for="barcodeInput">Or enter barcode / QR contents</label><input id="barcodeInput" inputmode="numeric" autocomplete="off" placeholder="EAN / GTIN / QR code">
+      <button type="button" onclick="lookupMedicineBarcode()">Look up code</button><div id="barcodeStatus" class="result" aria-live="polite"></div>
+      <p class="source-note">Camera starts only after you tap the button. Camera scanning requires a secure site (HTTPS) and permission. A decoded code is not an authenticity check.</p>
+      <p class="source-note"><strong>Catalogue coverage:</strong> a verified India-wide GTIN-to-medicine dataset is not bundled with this demo. The scanner reads codes, but exact medicine lookup needs authorized product data. <a href="https://drugregistry.abdm.gov.in/" target="_blank" rel="noopener">Open the Government of India Drug Registry</a>.</p>
+    </section>
+    <section class="identifier-card">
+      <div class="section-icon">💊</div><h4>Identify a tablet</h4>
+      <p>Use the letters or numbers printed on the tablet with its shape and colour. Colour or shape alone cannot identify medicine safely.</p>
+      <label for="pillImprintInput">Imprint on the tablet</label><input id="pillImprintInput" autocomplete="off" placeholder="Exact letters or numbers">
+      <div class="identifier-fields"><select id="pillShapeInput"><option value="">Any shape</option><option value="round">Round</option><option value="oval">Oval</option><option value="oblong">Oblong</option><option value="capsule">Capsule</option></select><select id="pillColorInput"><option value="">Any colour</option><option value="white">White</option><option value="brown">Brown</option><option value="pink">Pink</option><option value="yellow">Yellow</option></select></div>
+      <button type="button" onclick="identifyPillByImprint()">Search exact imprint</button><div id="pillIdentifyResult" class="result" aria-live="polite"></div>
+      <p class="source-note">The verified local tablet-imprint catalogue is not populated yet. No match means the identity remains unknown; ask a pharmacist. Never identify a pill by colour or shape alone.</p>
+    </section>
+  </div>
+</div>
+
+<!-- REMINDER -->
+
+<div id="reminderPage" class="container page">
+
+<h3 data-i18n="reminder_title">Medication Reminder</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+
+<input id="remDrug" data-i18n-placeholder="reminder_drug_ph" placeholder="Drug Name">
+<input id="remTime" data-i18n-placeholder="reminder_time_ph" placeholder="Time (e.g., 08:00 AM)">
+
+<button onclick="addReminder()" data-i18n="reminder_btn">Add Reminder</button>
+<div id="reminderList" class="result"></div>
+
+</div>
+
+<!-- FAQ -->
+
+<div id="faqPage" class="container page">
+
+<h3 data-i18n="faq_title">Frequently Asked Questions</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+
+<div class="faq-list">
+  <details class="faq-item">
+    <summary class="faq-question" data-i18n="faq_q1">Is this app a substitute for medical advice?</summary>
+    <p class="faq-answer" data-i18n="faq_a1">No. This app provides educational information only. Always consult a qualified healthcare professional for medical decisions.</p>
+  </details>
+  <details class="faq-item">
+    <summary class="faq-question" data-i18n="faq_q2">How accurate is the drug information?</summary>
+    <p class="faq-answer" data-i18n="faq_a2">Our database includes common medications and their typical uses. However, medications change frequently, and individual responses vary. Verify with official sources.</p>
+  </details>
+  <details class="faq-item">
+    <summary class="faq-question" data-i18n="faq_q3">Can I use this for emergency situations?</summary>
+    <p class="faq-answer" data-i18n="faq_a3">No. This app is not designed for emergencies. Call emergency services immediately for urgent medical situations.</p>
+  </details>
+  <details class="faq-item">
+    <summary class="faq-question" data-i18n="faq_q4">Is my data stored securely?</summary>
+    <p class="faq-answer" data-i18n="faq_a4">Your notes and profile are stored locally on your device. We do not collect or transmit personal medical data to external servers.</p>
+  </details>
+  <details class="faq-item">
+    <summary class="faq-question" data-i18n="faq_q5">How do I report an error in drug information?</summary>
+    <p class="faq-answer" data-i18n="faq_a5">Use official references and ask a pharmacist to verify medicine information.</p>
+  </details>
+</div>
+
+</div>
+
+<!-- ABOUT US -->
+
+<div id="aboutPage" class="container page">
+
+<h3 data-i18n="about_title">About PharmaCare</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+
+<div class="about-content">
+  <div class="about-hero">
+    <div class="about-hero-icon" aria-hidden="true">⚕️</div>
+    <h4 class="about-hero-title" data-i18n="about_welcome_title">Welcome to PharmaCare</h4>
+    <p class="about-hero-desc" data-i18n="about_welcome_desc">PharmaCare is a modern healthcare companion designed to provide educational drug information, practical medical tools, and productivity features in a simple and accessible interface. The project aims to help students, healthcare professionals, and everyday users quickly access useful medical resources while maintaining an intuitive user experience.</p>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-card-header">
+        <span class="about-card-icon" aria-hidden="true">🎯</span>
+        <h5 data-i18n="about_mission_title">Our Mission</h5>
+      </div>
+      <p data-i18n="about_mission_desc">Our mission is to make medical information and essential healthcare utilities easier to access through technology while encouraging responsible use and consultation with qualified healthcare professionals.</p>
+    </div>
+
+    <div class="about-card">
+      <div class="about-card-header">
+        <span class="about-card-icon" aria-hidden="true">👁️</span>
+        <h5 data-i18n="about_vision_title">Project Vision</h5>
+      </div>
+      <p data-i18n="about_vision_desc">The long-term vision of PharmaCare is to become a comprehensive healthcare assistant that combines reliable educational content, smart productivity tools, medication management, and modern technology to improve access to medical knowledge.</p>
+    </div>
+  </div>
+
+  <div class="about-section-grid">
+    <div class="about-card">
+      <div class="about-card-header">
+        <span class="about-card-icon" aria-hidden="true">✨</span>
+        <h5 data-i18n="about_features_title">Key Features</h5>
+      </div>
+      <ul class="about-list">
+        <li data-i18n="about_feat_1">Drug information library</li>
+        <li data-i18n="about_feat_2">Medical calculators</li>
+        <li data-i18n="about_feat_3">Medication notes and organization tools</li>
+        <li data-i18n="about_feat_4">Dark mode support</li>
+        <li data-i18n="about_feat_5">Multilingual interface</li>
+        <li data-i18n="about_feat_6">Mobile-friendly responsive design</li>
+        <li data-i18n="about_feat_7">Progressive Web App (PWA) support</li>
+        <li data-i18n="about_feat_8">Camera and barcode-related utilities where available</li>
+      </ul>
+    </div>
+
+    <div class="about-card">
+      <div class="about-card-header">
+        <span class="about-card-icon" aria-hidden="true">💻</span>
+        <h5 data-i18n="about_tech_title">Technologies Used</h5>
+      </div>
+      <p class="about-subtitle" data-i18n="about_tech_desc">PharmaCare is built using modern web technologies, including:</p>
+      <ul class="about-list">
+        <li data-i18n="about_tech_1">HTML5</li>
+        <li data-i18n="about_tech_2">CSS3</li>
+        <li data-i18n="about_tech_3">Vanilla JavaScript</li>
+        <li data-i18n="about_tech_4">Local Storage APIs</li>
+        <li data-i18n="about_tech_5">Progressive Web App technologies</li>
+        <li data-i18n="about_tech_6">Responsive design principles</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="about-card">
+    <div class="about-card-header">
+      <span class="about-card-icon" aria-hidden="true">📚</span>
+      <h5 data-i18n="about_sources_title">Information Sources and References</h5>
+    </div>
+    <p data-i18n="about_sources_desc">The medicine library is an educational project dataset. Individual entries are not all independently verified. Use the linked official references and consult a pharmacist before relying on medicine information.</p>
+  </div>
+
+  <div class="about-card">
+    <div class="about-card-header">
+      <span class="about-card-icon" aria-hidden="true">🤝</span>
+      <h5 data-i18n="about_opensource_title">Open Source and Credits</h5>
+    </div>
+    <p data-i18n="about_opensource_desc">This project acknowledges the contributions of the open-source community and the educational resources that make modern web development possible. Any third-party libraries, icons, fonts, or external assets should be credited according to their respective licenses.</p>
+  </div>
+
+  <div class="about-warning-section">
+    <div class="about-warning-card critical">
+      <div class="about-warning-header">
+        <span aria-hidden="true">⚕️</span>
+        <h5 data-i18n="about_disclaimer_title">Medical Disclaimer</h5>
+      </div>
+      <p data-i18n="about_disclaimer_desc">PharmaCare is intended for educational and informational purposes only. It does not provide medical diagnosis, treatment, or professional healthcare advice. Users should always consult licensed physicians, pharmacists, or other qualified healthcare professionals before making medical decisions or taking medications.</p>
+    </div>
+
+    <div class="about-warning-card safe">
+      <div class="about-warning-header">
+        <span aria-hidden="true">🔒</span>
+        <h5 data-i18n="about_privacy_title">Privacy</h5>
+      </div>
+      <p data-i18n="about_privacy_desc">PharmaCare is designed to respect user privacy. Personal notes and preferences may be stored locally on the user's device. Users should avoid storing highly sensitive medical or personal information unless appropriate security measures are implemented.</p>
+    </div>
+
+    <div class="about-warning-card warning">
+      <div class="about-warning-header">
+        <span aria-hidden="true">⚠️</span>
+        <h5 data-i18n="about_accuracy_title">Accuracy and Limitations</h5>
+      </div>
+      <p data-i18n="about_accuracy_desc">Although every effort is made to improve the quality and reliability of the information provided, no guarantee is made regarding completeness or accuracy. Medical knowledge evolves continuously, and recommendations may change over time.</p>
+    </div>
+  </div>
+
+  <div class="about-footer-card">
+    <div class="about-card-header">
+      <span class="about-card-icon" aria-hidden="true">✉️</span>
+      <h5 data-i18n="about_contact_title">Contact</h5>
+    </div>
+    <div class="about-contact-content">
+      <p><strong>Developer:</strong> <span class="developer-name">Mohamed Essam</span></p>
+      <p data-i18n="about_contact_desc">For questions, feedback, bug reports, or collaboration opportunities, users are encouraged to contact the project maintainer through the project's official communication channels or repository.</p>
+    </div>
+    <div class="about-meta-info">
+      <span class="meta-item"><strong data-i18n="about_version">Version</strong>: 1.0</span>
+      <span class="meta-item"><strong data-i18n="about_last_updated">Last Updated</strong>: June 2026</span>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+</div>
+
+<!-- ACCOUNT -->
+
+<div id="accountPage" class="container page">
+
+<h3 data-i18n="profile_title">Profile & settings</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="profile_desc">Manage your demonstration profile, preferences and saved details.</p>
+
+<p class="source-note account-privacy" data-i18n="account_privacy">Demo mode only. Everything here stays in this browser and is not encrypted. Do not enter real personal or health information. Account linking is a visual demo and does not connect to external services.</p>
+<section class="account-panel account-identity">
+  <div class="avatar-picker"><img id="profileAvatarPreview" alt="Profile photo preview" hidden><span id="profileAvatarPlaceholder">👤</span><label class="account-upload" for="profileAvatarInput" data-i18n="account_photo">Add photo</label><input id="profileAvatarInput" type="file" accept="image/*" hidden onchange="previewProfilePhoto(this)"></div>
+  <div class="account-profile-fields"><h4 data-i18n="account_personal">Personal details</h4><input id="profileName" data-i18n-placeholder="profile_name_ph" placeholder="Name"><div class="account-field-row"><input id="profileAge" type="number" min="0" max="120" data-i18n-placeholder="profile_age_ph" placeholder="Age"><input id="profileBlood" data-i18n-placeholder="profile_blood_ph" placeholder="Blood Group (e.g. O+)"></div></div>
+</section>
+<section class="account-panel"><h4 data-i18n="account_emergency">Emergency contacts</h4><p class="account-help" data-i18n="account_emergency_hint">Demo contact details only. This does not call emergency services.</p><div class="account-field-row"><input id="emergencyName1" data-i18n-placeholder="account_contact1_name" placeholder="Contact 1 name"><input id="emergencyPhone1" type="tel" data-i18n-placeholder="account_contact1_phone" placeholder="Contact 1 phone"></div><div class="account-field-row"><input id="emergencyName2" data-i18n-placeholder="account_contact2_name" placeholder="Contact 2 name"><input id="emergencyPhone2" type="tel" data-i18n-placeholder="account_contact2_phone" placeholder="Contact 2 phone"></div><input id="emergencyNumber" type="tel" data-i18n-placeholder="account_emergency_number" placeholder="Local emergency number (India: 112)"></section>
+<section class="account-panel"><h4 data-i18n="account_preferences">Preferences</h4><div class="account-field-row"><label><span data-i18n="account_language">Language</span><select id="accountLanguage" onchange="setLanguage(this.value)"><option value="en">English</option><option value="ta">தமிழ்</option><option value="ar">العربية</option></select></label><label><span data-i18n="account_theme">Appearance</span><select id="accountTheme" onchange="setAccountTheme(this.value)"><option value="light">Light</option><option value="dark">Dark</option></select></label><label><span data-i18n="account_units">Units</span><select id="accountUnits"><option value="metric">Metric</option><option value="imperial">Imperial</option></select></label></div><label class="account-check"><input id="accountReminders" type="checkbox"><span data-i18n="account_reminders">Show reminder notifications (demo)</span></label></section>
+<section class="account-panel"><h4 data-i18n="account_health_demo">Demo health notes</h4><div class="account-field-row"><input id="profileDiseases" data-i18n-placeholder="profile_diseases_ph" placeholder="Chronic Diseases"><input id="profileMedications" data-i18n-placeholder="profile_meds_ph" placeholder="Current Medications"></div><input id="profileAllergies" data-i18n-placeholder="profile_allergies_ph" placeholder="Allergies"></section>
+<section class="account-panel"><h4 data-i18n="account_notes">Notes & extra fields</h4><textarea id="accountNotes" rows="3" data-i18n-placeholder="account_notes_ph" placeholder="Notes for this demo profile"></textarea><div class="account-field-row"><input id="accountExtraLabel" data-i18n-placeholder="account_extra_name" placeholder="Extra field name"><input id="accountExtraValue" data-i18n-placeholder="account_extra_value" placeholder="Extra field value"></div></section>
+<section class="account-panel"><h4 data-i18n="account_connections">Connected accounts</h4><p class="account-help" data-i18n="account_connections_hint">Display-only demo. No Google, Apple or other account is actually linked.</p><div class="account-links account-connectors"><button type="button" class="account-link-btn" onclick="toggleDemoConnection('Google')">Google · <span id="connectionGoogle">Not linked</span></button><button type="button" class="account-link-btn" onclick="toggleDemoConnection('Apple')">Apple · <span id="connectionApple">Not linked</span></button><button type="button" class="account-link-btn" onclick="toggleDemoConnection('Email')">Email · <span id="connectionEmail">Not linked</span></button></div></section>
+<button onclick="saveProfile()" data-i18n="profile_btn">Save Profile</button>
+
+<div id="profileStatus" class="result"></div>
+
+<h4 class="section-heading section-heading--loose">My Data / بياناتي</h4>
+<div class="account-links">
+  <button type="button" class="account-link-btn" onclick="exportMyData()">⬇ Export backup</button>
+  <button type="button" class="account-link-btn" onclick="document.getElementById('importFile').click()">⬆ Import backup</button>
+  <button type="button" class="account-link-btn" onclick="clearMyData()">🗑 Delete all my data</button>
+  <input id="importFile" type="file" accept="application/json" style="display:none" onchange="importMyData(this)">
+</div>
+<div id="dataStatus" class="result"></div>
+
+<h4 class="section-heading section-heading--loose" data-i18n="account_links_title">Quick Links</h4>
+<div class="account-links">
+  <button type="button" class="account-link-btn" onclick="openPage('aboutPage')" data-i18n="about_link">About PharmaCare</button>
+</div>
+
+</div>
+
+<!-- CAMERA -->
+
+<div id="convertPage" class="container page">
+<h3>Unit Converter / محوّل الوحدات</h3>
+<button class="back-btn" onclick="goBack('medicalCalcPage')">← Back</button>
+<input id="cvValue" type="number" step="any" placeholder="Value / القيمة">
+<select id="cvType" onchange="fillConvertUnits()"><option value="weight">Weight / الوزن</option><option value="volume">Volume / الحجم</option><option value="temp">Temperature / الحرارة</option></select>
+<select id="cvFrom"></select>
+<select id="cvTo"></select>
+<button onclick="convertUnits()">Convert / تحويل</button>
+<div id="cvResult" class="result"></div>
+</div>
+
+<!-- PHARMACY LOCATOR -->
+
+<div id="pharmacyLocatorPage" class="container page">
+
+<h3 data-i18n="locator_title">Pharmacy Locator</h3>
+<button class="back-btn" onclick="goBack('dashboardPage')" data-i18n="back_btn">← Back</button>
+<p data-i18n="locator_desc">Map searches are based on Google Maps results. Pharmacy stock and opening hours are not confirmed by this demo.</p>
+<div class="place-search"><label for="placeSearch">Search Coimbatore hospitals and pharmacies</label><input id="placeSearch" type="search" placeholder="Hospital, pharmacy, area or locality"><button type="button" onclick="searchCoimbatorePlaces()">Search on map</button><small>Your search is sent to Google Maps when you tap Search. Location access is requested only when you tap My Location.</small></div>
+<div class="known-places"><button type="button" onclick="openPlaceSearch('PSG Hospitals Coimbatore')">PSG Hospitals</button><button type="button" onclick="openPlaceSearch('Ganga Hospital Coimbatore')">Ganga Hospital</button><button type="button" onclick="openPlaceSearch('Apollo Pharmacy Coimbatore')">Apollo Pharmacy</button><button type="button" onclick="openPlaceSearch('Jan Aushadhi Kendra Coimbatore')">Jan Aushadhi</button></div>
+
+<div id="locatorCoords" class="locator-coords"></div>
+
+<div class="locator-map-frame">
+<iframe id="mapFrame" title="Location map" loading="eager" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="locator-map-pin" aria-hidden="true">📍</div>
+</div>
+
+<div class="locator-actions">
+<button type="button" id="locatorPharmBtn" class="locator-btn locator-btn--pharm" onclick="showNearby('pharmacy')" data-i18n="locator_pharm_btn">Nearby Pharmacies</button>
+<button type="button" id="locatorHospBtn" class="locator-btn locator-btn--hosp" onclick="showNearby('hospital')" data-i18n="locator_hosp_btn">Nearby Hospitals</button>
+<button type="button" class="locator-btn locator-btn--me" onclick="showMyLocation()" data-i18n="locator_me_btn">My Location</button>
+</div>
+
+<div id="locatorStatus" class="result locator-status"></div>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav" aria-label="Main">
+
+<button type="button" class="bottom-nav-item" onclick="openPage('dashboardPage')">
+<span class="bottom-nav-icon" aria-hidden="true">🏠</span>
+<span class="bottom-nav-label" data-i18n="nav_dashboard">Dashboard</span>
+</button>
+
+<button type="button" class="bottom-nav-item" onclick="openPage('medicalCalcPage')">
+<span class="bottom-nav-icon" aria-hidden="true">🧮</span>
+<span class="bottom-nav-label">Calculators</span>
+</button>
+
+<button type="button" class="bottom-nav-item" onclick="openPage('libraryPage')">
+<span class="bottom-nav-icon" aria-hidden="true">💊</span>
+<span class="bottom-nav-label" data-i18n="nav_drugs">Drugs</span>
+</button>
+
+<button type="button" class="bottom-nav-item" onclick="openPage('medicineToolsPage')">
+<span class="bottom-nav-icon" aria-hidden="true">📷</span>
+<span class="bottom-nav-label">Identify</span>
+</button>
+
+<button type="button" class="bottom-nav-item" onclick="openPage('accountPage')">
+<span class="bottom-nav-icon" aria-hidden="true">👤</span>
+<span class="bottom-nav-label" data-i18n="nav_account">Account</span>
+</button>
+
+<button type="button" class="bottom-nav-item" onclick="openPage('pharmacyLocatorPage')">
+<span class="bottom-nav-icon" aria-hidden="true">🗺️</span>
+<span class="bottom-nav-label" data-i18n="nav_locator">Locator</span>
+</button>
+
+<button type="button" class="bottom-nav-item" onclick="openPage('faqPage')">
+<span class="bottom-nav-icon" aria-hidden="true">❓</span>
+<span class="bottom-nav-label" data-i18n="nav_faq">FAQ</span>
+</button>
+
+</nav>
+
+<script src="drug-data.js"></script>
+<script src="drug-extended.js"></script>
+<script src="drug-pronunciation-ar.js"></script>
+<script src="script.js"></script>
+<script src="app-enhancements.js"></script>
+
+<script>if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){navigator.serviceWorker.register("sw.js").catch(function(){});}</script>
+</body>
+</html>
